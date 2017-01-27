@@ -1,7 +1,10 @@
 <?php
 require("../include/menu.inc.php");
-  require("../assets/helper.php"); ?>
+  require("../assets/helper.php");
 
+if(isset($_SESSION['auth']))
+{
+?>
     <div class="container">
       <form action="../controller/addInsuranceController.php" method="post">
       <div class="form-group">
@@ -19,3 +22,9 @@ require("../include/menu.inc.php");
       <button type="submit" class="btn btn-default">Ajouter</button>
     </form>
   </div>
+<?php
+}
+else
+{
+    echo "<p style='color: red;'>Vous devez être connecté pour accéder à cette page</p>";
+}

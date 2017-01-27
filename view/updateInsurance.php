@@ -4,8 +4,9 @@ require("../assets/helper.php");
 $id = $_GET["id"];
 $insurance = findInsurance($id);
 
+if(isset($_SESSION['auth']))
+{
 ?>
-
     <div class="container">
       <form action="../controller/updateInsuranceController.php" method="post">
       <div class="form-group">
@@ -24,3 +25,9 @@ $insurance = findInsurance($id);
       <button type="submit" class="btn btn-default">Mettre à jour</button>
     </form>
   </div>
+<?php
+}
+else
+{
+    echo "<p style='color: red;'>Vous devez être connecté pour accéder à cette page</p>";
+}

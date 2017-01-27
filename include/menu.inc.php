@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -16,8 +19,25 @@
       <div class="title">BlanK-Assurance</div>
     <div class="toggles">
        <a class="btn btn-default" href="../view/">Accueil</a>
-       <a class="btn btn-default" href="../view/addClient.php">Ajouter client</a>
-       <a class="btn btn-default" href="../view/addInsurance.php">Ajouter assurance</a>
+       <?php
+       if(isset($_SESSION['auth']))
+       {?>
+            <a class="btn btn-default" href="../view/addClient.php">Ajouter client</a>
+            <a class="btn btn-default" href="../view/addInsurance.php">Ajouter assurance</a>
+       <?php
+       }
+       ?>
        <a class="btn btn-default" href="../view/showClients.php">Liste clients</a>
       <a class="btn btn-default" href="../view/showInsurances.php">Liste assurances</a>
+      <?php
+       if(isset($_SESSION['auth']))
+       {?>
+            <a class="btn btn-default" href="../controller/deconnexion.php">Se déconnecter</a>
+       <?php
+       }
+       else
+       {?>
+            <a class="btn btn-default" href="../view/authentification.php">Se connecter</a><?php
+       }
+       ?>
     </div>

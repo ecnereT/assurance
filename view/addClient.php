@@ -1,6 +1,9 @@
 <?php
-  require("../include/menu.inc.php"); ?>
+  require("../include/menu.inc.php");
 
+if(isset($_SESSION['auth']))
+{
+?>
     <div class="container">
       <form action="../controller/addClientController.php" method="post">
       <div class="form-group">
@@ -14,3 +17,10 @@
       <button type="submit" class="btn btn-default">Ajouter</button>
     </form>
   </div>
+
+<?php
+}
+else
+{
+    echo "<p style='color: red;'>Vous devez être connecté pour accéder à cette page</p>";
+}

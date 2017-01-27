@@ -1,5 +1,5 @@
-<?php include("../include/menu.inc.php");
-require("../include/config.inc.php");
+<?php include_once("../include/menu.inc.php");
+require_once("../include/config.inc.php");
 ?>
 <div class="container">
   <h4>Liste des clients: </h4>
@@ -8,7 +8,12 @@ require("../include/config.inc.php");
        <tr>
            <th>Nom</th>
            <th>Age</th>
-           <th>Actions</th>
+           <?php
+            if(isset($_SESSION['auth']))
+            {?>
+                <th>Actions</th>
+            <?php
+            }?>
        </tr>
    </thead>
 
@@ -26,8 +31,11 @@ require("../include/config.inc.php");
             $res .= ('<td>'.$row['name'].'</td>');
             $res .= ('<td>'.$row['age'].'</td>');
             $res .= ('<td>');
-            $res .= '<a class="btn-info btn-sm" href="../view/detailsClient.php?id='.$row['id'].'"> Details </a>';
-            $res .= '<a class="btn-success btn-sm" href="../view/updateClient.php?id='.$row['id'].'">Modifier  </a>';
+            if(isset($_SESSION['auth']))
+            {
+                $res .= '<a class="btn-info btn-sm" href="../view/detailsClient.php?id='.$row['id'].'"> Details </a>';
+                $res .= '<a class="btn-success btn-sm" href="../view/updateClient.php?id='.$row['id'].'">Modifier  </a>';
+            }
             $res .= '</td>';
             $res .= ('</tr>');
             echo $res;
