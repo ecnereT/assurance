@@ -9,7 +9,12 @@ require("../assets/helper.php");
            <th>Nom</th>
            <th>Prix à l'année</th>
            <th>Type</th>
+           <?php
+            if(isset($_SESSION['auth']))
+            {?>
            <th>Actions</th>
+           <?php
+            }?>
        </tr>
    </thead>
 
@@ -29,7 +34,10 @@ require("../assets/helper.php");
             $res .= ('<td>');
             $res .= findTypeInsurance($row['idType']);
             $res.= ('</td>');
-            $res .= ('<td><a class="btn-primary btn-sm" href="../view/updateInsurance.php?id='.$row['id'].'">Modifier </a></td>');
+            if(isset($_SESSION['auth']))
+            {
+                $res .= ('<td><a class="btn-primary btn-sm" href="../view/updateInsurance.php?id='.$row['id'].'">Modifier </a></td>');
+            }
             $res .= ('</tr>');
             echo $res;
           }
